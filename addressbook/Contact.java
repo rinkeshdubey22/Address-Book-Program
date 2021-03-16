@@ -3,15 +3,17 @@ package addressbook;
 public class Contact {
 	String firstName;
 	String lastName;
+	String address;
 	String city;
 	String state;
 	String email;
 	long mobileNo;
 	int zip;
 
-	public Contact(String firstName, String lastName, String city, String state, String email, long mobileNo, int zip) {
+	public Contact(String firstName, String lastName, String address, String city, String state, String email, long mobileNo, int zip) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.email = email;
@@ -38,6 +40,15 @@ public class Contact {
                 this.lastName = lastName;
 
 	}
+	public String getAddress() {
+                return address;
+
+        }
+
+        public void setAddress(String address) {
+                this.address = address;
+
+        }
 
 	public String getCity() {
 		return city;
@@ -90,7 +101,7 @@ public class Contact {
 	}
 
 	public String toString() {
-	return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", state=" + state + ", pincode=" + zip + ", MobileNo=" + mobileNo + "]" + "\n";
+	return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", Address=" + address + ", city=" + city + ", state=" + state + ", pincode=" + zip + ", MobileNo=" + mobileNo + "]" + "\n";
 
 	}
 
