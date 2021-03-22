@@ -2,6 +2,7 @@ package addressbook;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
 
@@ -30,10 +31,10 @@ public class AddressBookMain {
                 String email = scan.nextLine();
 
 		System.out.println("Enter Your Mobile Number");
-		long mobileNo = scan.nextLong();
+		long mobileNo = Long.parseLong(scan.nextLine());
 
 		System.out.println("Enter Zip Code of Your Area");
-                int zip = scan.nextInt();
+                int zip = Integer.parseInt(scan.nextLine());
 
 
 		Contact contact = new Contact(first, last, address, city, state, email, mobileNo, zip);
@@ -65,12 +66,12 @@ public class AddressBookMain {
 						+"(2) Email Id\n"
 						+"(3) Address\n"
 						+"(4) Quit");
-				int option = scan.nextInt();
+				int option = Integer.parseInt(scan.nextLine());
 
 				switch  (option) {
 					case 1 : {
 						System.out.println("Enter New Mobile No:");
-						long mobileNo = scan.nextLong();
+						long mobileNo = Long.parseLong(scan.nextLine());
 
 						person.setMobileNo(mobileNo);
 						System.out.println("Mobile Number Is Updated Successfully");
@@ -93,7 +94,7 @@ public class AddressBookMain {
                                                 String city = scan.nextLine();
 
 						System.out.println("Enter Your Zip Code:");
-                                                int zip = scan.nextInt();
+                                                int zip = Integer.parseInt(scan.nextLine());
 
 
 						person.setState(state);
@@ -143,7 +144,7 @@ public class AddressBookMain {
 		String userInputBookName = scan.nextLine();
 
 		AddressBookList addressbook = new AddressBookList(userInputBookName);
-		addressBookNameList .add(addressbook);
+		addressBookNameList.add(addressbook);
 		System.out.println("New Address Book Name Is Added In the List");
 
 	}
@@ -175,6 +176,23 @@ public class AddressBookMain {
 		}
 	}
 
+	public void searchPersonByCity() {
+
+		System.out.println("Enter City Name To Search Person By City Name");
+		String cityName = scan.nextLine();
+
+		addressBook.stream().filter(map -> map.getCity().contains(cityName)).forEach(addressBook -> System.out.println(addressBook));
+	}
+
+	public void searchPersonByState() {
+
+        System.out.println("Enter the state name to search Person by state name");
+        String stateName = scan.nextLine();
+
+        addressBook.stream().filter(map -> map.getState().contains(stateName)).forEach(addressBook -> System.out.println(addressBook));
+
+	}
+
 	public static void main(String[] args) {
 
 		System.out.println("................Welcome To The Address Book Problem.................");
@@ -186,7 +204,11 @@ public class AddressBookMain {
 		System.out.println("4.Delete Contact");
 		System.out.println("5.Add New Address Book");
 		System.out.println("6.Display New Address Book");
-        	System.out.println("7.Exit");
+        	System.out.println("7.Search Person By City Name");
+		System.out.println("8.Search Person By State Name");
+		System.out.println("9.Exit");
+
+
 
         	int k=0;
         	while(k==0) {
@@ -213,6 +235,12 @@ public class AddressBookMain {
 					address.displayAddressBook();
 					break;
 				case 7:
+                                        address.searchPersonByCity();
+                                        break;
+				case 8:
+                                        address.searchPersonByState();
+                                        break;
+				case 9:
 					System.out.println("Exit");
                     			k = 1;
                     			break;
