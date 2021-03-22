@@ -1,5 +1,6 @@
 package addressbook;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ public class AddressBookMain {
 	public ArrayList<Contact> addressBook = new ArrayList<>();
 	ArrayList<AddressBookList> addressBookNameList = new ArrayList<>();
 	Scanner scan = new Scanner(System.in);
+
 	public void addContact() {
 
 		System.out.println("Enter Your First Name");
@@ -181,15 +183,35 @@ public class AddressBookMain {
 		System.out.println("Enter City Name To Search Person By City Name");
 		String cityName = scan.nextLine();
 
-		addressBook.stream().filter(map -> map.getCity().contains(cityName)).forEach(addressBook -> System.out.println(addressBook));
+		Dictionary Citywisedict = new Hashtable();
+
+		addressBook.stream().filter(map -> map.getCity().contains(cityName)).forEach(addressBook -> Citywisedict.put(addressBook.getFirstName(),cityName));
+		System.out.println("City Name: " + cityName);
+
+		for (Enumeration i = Citywisedict.keys(); i.hasMoreElements();) {
+
+			System.out.println("Name:" + i.nextElement());
+
+		}
 	}
+
 
 	public void searchPersonByState() {
 
         System.out.println("Enter the state name to search Person by state name");
         String stateName = scan.nextLine();
 
-        addressBook.stream().filter(map -> map.getState().contains(stateName)).forEach(addressBook -> System.out.println(addressBook));
+	Dictionary Statewisedict = new Hashtable();
+
+		addressBook.stream().filter(map -> map.getState().contains(stateName)).forEach(addressBook -> Statewisedict.put(addressBook.getFirstName(),stateName));
+                System.out.println("State Name: " + stateName);
+
+                for (Enumeration i = Statewisedict.keys(); i.hasMoreElements();) {
+
+                        System.out.println("Name:" + i.nextElement());
+
+                }
+
 
 	}
 
