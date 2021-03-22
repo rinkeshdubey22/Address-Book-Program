@@ -12,20 +12,30 @@ public class AddressBookMain {
 
 		System.out.println("Enter Your First Name");
 		String first = scan.nextLine();
+		duplicateNameCheck(first);
+
 		System.out.println("Enter Your Last Name");
                 String last = scan.nextLine();
+
 		System.out.println("Enter Your Address");
                 String address = scan.nextLine();
+
 		System.out.println("Enter Your City Name");
                 String city = scan.nextLine();
+
 		System.out.println("Enter Your State");
                 String state = scan.nextLine();
+
 		System.out.println("Enter Your Email ID");
                 String email = scan.nextLine();
+
 		System.out.println("Enter Your Mobile Number");
 		long mobileNo = scan.nextLong();
+
 		System.out.println("Enter Zip Code of Your Area");
                 int zip = scan.nextInt();
+
+
 		Contact contact = new Contact(first, last, address, city, state, email, mobileNo, zip);
 		addressBook.add(contact);
 		System.out.println("All Contact Details Added Successfully");
@@ -42,6 +52,7 @@ public class AddressBookMain {
 	}
 
 	public void editPersonDetails() {
+
 		System.out.println("Enter First Name To Edit Details:");
 		String name = scan.nextLine();
 
@@ -108,6 +119,7 @@ public class AddressBookMain {
 	}
 
 	public void deletePersonDetails() {
+
 		System.out.println("Enter Your First Name to Delete Details");
 		String name = scan.nextLine();
 
@@ -126,6 +138,7 @@ public class AddressBookMain {
 	}
 
 	public void newAddressBook() {
+
 		System.out.println("Enter Address Book Name:");
 		String userInputBookName = scan.nextLine();
 
@@ -136,6 +149,7 @@ public class AddressBookMain {
 	}
 
 	public void displayAddressBook() {
+
 		System.out.println("Existing Address Book Names Are:");
 
 		for (AddressBookList addressBookList : addressBookNameList) {
@@ -144,17 +158,36 @@ public class AddressBookMain {
 		}
 	}
 
+	public void duplicateNameCheck(String first) {
+
+		for (int i = 0; i < addressBook.size(); i++) {
+			String contactName = addressBook.get(i).firstName;
+
+			if (first.equals(contactName)) {
+
+				System.out.println("This Person Is Already Present");
+
+			} else {
+
+				System.out.println("You Can Add This person");
+				break;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
+
 		System.out.println("................Welcome To The Address Book Problem.................");
 		AddressBookMain address = new AddressBookMain();
 		Scanner sc = new Scanner(System.in);
         	System.out.println("1.Add Contact");
-        	System.out.println("2.Edit Contact");
-        	System.out.println("3.Display Contact");
+        	System.out.println("2.Display Contact");
+        	System.out.println("3.Edit Contact");
 		System.out.println("4.Delete Contact");
 		System.out.println("5.Add New Address Book");
 		System.out.println("6.Display New Address Book");
         	System.out.println("7.Exit");
+
         	int k=0;
         	while(k==0) {
             		System.out.println("Enter the choice:");
