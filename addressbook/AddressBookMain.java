@@ -215,6 +215,16 @@ public class AddressBookMain {
 
 	}
 
+	public void countByCity(){
+        System.out.println(addressBook.stream().collect(Collectors.groupingBy((Contact C) -> C.getCity())));
+        System.out.println((addressBook.stream().collect(Collectors.groupingBy((Contact C) -> C.getCity(),Collectors.counting()))));
+    	}
+
+    	public void countByState(){
+        System.out.println(addressBook.stream().collect(Collectors.groupingBy((Contact C) -> C.getState())));
+        System.out.println((addressBook.stream().collect(Collectors.groupingBy((Contact C) -> C.getState(),Collectors.counting()))));
+    	}
+
 	public static void main(String[] args) {
 
 		System.out.println("................Welcome To The Address Book Problem.................");
@@ -228,7 +238,9 @@ public class AddressBookMain {
 		System.out.println("6.Display New Address Book");
         	System.out.println("7.Search Person By City Name");
 		System.out.println("8.Search Person By State Name");
-		System.out.println("9.Exit");
+		System.out.println("9.Count By City Name");
+		System.out.println("10.Count By State Name");
+		System.out.println("10.Exit");
 
 
 
@@ -262,8 +274,14 @@ public class AddressBookMain {
 				case 8:
                                         address.searchPersonByState();
                                         break;
-				case 9:
-					System.out.println("Exit");
+				 case 9:
+                    			address.countByCity();
+                    			break;
+                		case 10:
+                    			address.countByState();
+                    			break;
+                		case 11:
+                    			System.out.println("Exit");
                     			k = 1;
                     			break;
             		}
